@@ -23,18 +23,26 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 def split_text_for_slides(text: str, max_chars: int = 400) -> list[str]:
-    """Divide um texto longo em partes menores para caber nos slides, sem quebrar palavras."""
+    """Divide um texto longo em partes menores para caber nos slides, preservando quebras de linha."""
     if not text:
         return []
     
+    # Preserva quebras de linha transformando-as em tokens
+    text = text.replace('\n', ' <NEWLINE> ')
     words = text.split()
+    
     chunks = []
     current_chunk = []
     current_length = 0
     
     for word in words:
+        if word == '<NEWLINE>':
+            current_chunk.append('\n')
+            continue
+            
         if current_length + len(word) + 1 > max_chars and current_chunk:
-            chunks.append(" ".join(current_chunk))
+            chunk_str = " ".join(current_chunk).replace(' \n ', '\n').replace('\n ', '\n').replace(' \n', '\n')
+            chunks.append(chunk_str.strip())
             current_chunk = [word]
             current_length = len(word)
         else:
@@ -42,6 +50,7 @@ def split_text_for_slides(text: str, max_chars: int = 400) -> list[str]:
             current_length += len(word) + 1
             
     if current_chunk:
-        chunks.append(" ".join(current_chunk))
+        chunk_str = " ".join(current_chunk).replace(' \n ', '\n').replace('\n ', '\n').replace(' \n', '\n')
+        chunks.append(chunk_str.strip())
         
     return chunks

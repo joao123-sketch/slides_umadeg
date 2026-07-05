@@ -53,7 +53,7 @@ class Parser:
 
     def _extract_biblical_text_and_intro(self):
         biblical_raw = self._extract_section("T E X T O B Í B L I C O", "C O M E N T Á R I O D A L I Ç Ã O")
-        self.lesson.biblical_text = clean_text(biblical_raw)
+        self.lesson.biblical_text = clean_text(biblical_raw).replace('. ', '.\n')
         
         comentario_raw = self._extract_section("C O M E N T Á R I O D A L I Ç Ã O", "CONCLUSÃO")
         
