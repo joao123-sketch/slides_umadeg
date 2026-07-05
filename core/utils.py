@@ -38,6 +38,7 @@ def split_text_for_slides(text: str, max_chars: int = 400) -> list[str]:
     for word in words:
         if word == '<NEWLINE>':
             current_chunk.append('\n')
+            current_length += 60  # Penalidade: uma quebra de linha consome o equivalente a uma linha cheia (~60 chars)
             continue
             
         if current_length + len(word) + 1 > max_chars and current_chunk:
