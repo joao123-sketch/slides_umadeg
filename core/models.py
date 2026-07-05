@@ -57,7 +57,15 @@ class Lesson:
         if self.summary:
             self._add_multipage_to_list(slides, "Resumo da Lição", self.summary)
 
-        # 4. Tópicos
+        # 4. Texto Bíblico
+        if self.biblical_text:
+            self._add_multipage_to_list(slides, "Texto Bíblico", self.biblical_text)
+
+        # 5. Introdução
+        if self.introduction:
+            self._add_multipage_to_list(slides, "Introdução", self.introduction)
+
+        # 6. Tópicos
         for topic in self.topics:
             # Slide de Seção
             slides.append(Slide(
