@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+output/
+*.pdf
+!exemplo_pdf.pdf
+*.pptx
+*.zip
+.env
+.pytest_cache/
+.vscode/
+.DS_Store
