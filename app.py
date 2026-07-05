@@ -94,7 +94,7 @@ def main():
         st.session_state.output_pdf = None
     
     st.title("📖 UMADEG Slides")
-    st.write("Gerador automático de slides com Design Moderno (RobotoSlab)")
+    st.write("Gerador automático de slides para a UMADEG")
     
     uploaded_file = st.file_uploader("Faça upload do PDF da lição", type="pdf")
     
